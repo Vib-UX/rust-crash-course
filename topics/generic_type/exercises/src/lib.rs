@@ -1,9 +1,11 @@
-pub fn first(t: (u32, i32)) -> u32 {
-    t.0
+pub fn first<T,M>(t: (T, M)) -> T {
+    let (first, _) =t;
+    return first;
 }
 
-pub fn last(t: (u32, i32)) -> i32 {
-    t.1
+pub fn last<T,M>(t: (T, M)) -> M {
+    let (_, last) = t;
+    return last;
 }
 
 #[derive(Debug)]

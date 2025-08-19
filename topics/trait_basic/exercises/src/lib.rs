@@ -1,4 +1,4 @@
-pub trait Tester {
+pub trait Tester{
     fn test(&self, file_path: &str) -> String;
 }
 
@@ -10,6 +10,18 @@ pub struct Cargo {
     pub version: String,
 }
 
-pub fn test(tester: ?, file_path: &str) -> String {
-    todo!();
+impl Tester for Foundry{
+    fn test(&self, file_path: &str)-> String{
+        format!("forge test {}", file_path)
+    }
+}
+
+impl Tester for Cargo{
+    fn test(&self, file_path: &str) -> String{
+        format!("cargo test {}", file_path)
+    }
+}
+
+pub fn test(tester: &impl Tester, file_path: &str) -> String {
+    return tester.test(file_path);
 }
